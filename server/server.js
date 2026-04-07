@@ -6,7 +6,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Dummy data
 let notes = [
   { id: 1, text: "Learn React" },
   { id: 2, text: "Build project" }
@@ -15,6 +14,17 @@ let notes = [
 // GET notes
 app.get("/notes", (req, res) => {
   res.json(notes);
+});
+
+// POST note
+app.post("/notes", (req, res) => {
+  const newNote = {
+    id: Date.now(),
+    text: req.body.text
+  };
+
+  notes.push(newNote);
+  res.json(newNote);
 });
 
 app.listen(5001, () => {
