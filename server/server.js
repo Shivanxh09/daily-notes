@@ -26,6 +26,14 @@ app.post("/notes", (req, res) => {
   notes.push(newNote);
   res.json(newNote);
 });
+// DELETE note
+app.delete("/notes/:id", (req, res) => {
+  const id = req.params.id;
+
+  notes = notes.filter(note => note.id != id);
+
+  res.json({ message: "Note deleted" });
+});
 
 app.listen(5001, () => {
   console.log("Server running on port 5001");
